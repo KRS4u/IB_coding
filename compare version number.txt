@@ -1,0 +1,63 @@
+int Solution::compareVersion(string A, string B) {
+    string s1="",s2="";
+    A+='.';
+    B+='.';
+    int i,j,k;
+    int n1=A.length(),n2=B.length();
+    vector<string> arr,brr;
+    for(i=0;i<n1;++i)
+    {
+        while(i<n1 && A[i]!='.')
+        {
+            s1+=A[i];
+            ++i;
+        }
+        for(j=0;j<s1.length();++j)
+        if(s1[j]!='0')
+        break;
+        arr.push_back(s1.substr(j));
+        s1="";
+    }
+    for(i=0;i<n2;++i)
+    {
+        while(i<n2 && B[i]!='.')
+        {
+            s2+=B[i];
+            ++i;
+        }
+        for(j=0;j<s2.length();++j)
+        if(s2[j]!='0')
+        break;
+        brr.push_back(s2.substr(j));
+        s2="";
+    }
+    n1=arr.size(); n2=brr.size();
+    bool flag=true;
+    for(i=0;i<min(n1,n2);++i)
+    {
+        if(arr[i].length()>brr[i].length())
+        return 1;
+        else if(arr[i].length()<brr[i].length())
+        return -1;
+        else if(arr[i]>brr[i])
+        return 1;
+        else if(arr[i]<brr[i])
+        return -1;
+        
+    }
+    if(n1>n2)
+    {
+        for(i=n2;i<n1;++i)
+        if(arr[i]!="")
+        return 1;
+        return 0;
+    }
+    if(n1<n2)
+    {
+        for(i=n1;i<n2;++i)
+        if(brr[i]!="")
+        return -1;
+        return 0;
+    }
+    return 0;
+}

@@ -1,0 +1,22 @@
+int Solution::minimize(const vector<int> &A, const vector<int> &B, const vector<int> &C) {
+    int n1=A.size(),n2=B.size(),n3=C.size();
+    int i=0,j=0,k=0;
+    int mn=INT_MAX;
+    while(true)
+    {
+        if(i==n1)
+        break;
+        if(j==n2)
+        break;
+        if(k==n3)
+        break;
+        mn=min(mn,max(abs(A[i]-B[j]),max(abs(B[j]-C[k]),abs(C[k]-A[i]))));
+        if(A[i]<=B[j] && A[i]<=C[k])
+        ++i;
+        else if(B[j]<=A[i] && B[j]<=C[k])
+        ++j;
+        else
+        ++k;
+    }
+    return mn;
+}

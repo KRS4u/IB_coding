@@ -1,0 +1,18 @@
+string Solution::intToRoman(int A) {
+    string th[]={"","M","MM","MMM"};
+    string hund[]={"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+    string ten[]={"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+    string ones[]={"","I","II","III","IV","V","VI","VII","VIII","IX"};
+    int n,x;
+    string str="";
+    n=A/1000;
+    str+=th[n];
+    n=n*10;
+    x=A/100;
+    str+=hund[x-n];
+    n=(x)*10;
+    x=A/10;
+    str+=ten[x-n];
+    str+=ones[A%10];
+    return str;
+}

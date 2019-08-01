@@ -1,0 +1,75 @@
+int Solution::solve(vector<string> &A) {
+    int i,j,k,n=A.size();
+   // char ;
+    vector<double> a1,a2,a3;
+    double f1=2.0/3.0,x;
+    for(i=0;i<n;++i)
+    {
+        x=stof(A[i]);
+        if(x<f1)
+        a1.push_back(x);
+        else if(x>=f1 && x<=1)
+        a2.push_back(x);
+        else if(x>1 && x<2)
+        a3.push_back(x);
+    }
+    double xmax1=INT_MIN,xmax2=INT_MIN,xmax3=INT_MIN,xmin1=INT_MAX,xmin2=INT_MAX,ymin1=INT_MAX,ymin2=INT_MAX,ymax1=INT_MIN,zmin1=INT_MAX;
+    for(i=0;i<a1.size();++i)
+    {
+        if(a1[i]>=xmax1)
+        {
+            xmax3=xmax2;
+            xmax2=xmax1;
+            xmax1=a1[i];
+        }
+        else if(a1[i]>=xmax2)
+        {
+            xmax3=xmax2;
+            xmax2=a1[i];
+        }
+        else if(a1[i]>=xmax3)
+        {
+            xmax3=a1[i];
+        }
+        
+        if(a1[i]<=xmin1)
+        {
+            xmin2=xmin1;
+            xmin1=a1[i];
+        }
+        else if(a1[i]<=xmin2)
+        xmin2=a1[i];
+    }
+    for(i=0;i<a2.size();++i)
+    {
+        if(a2[i]>=ymax1)
+        {
+           
+            ymax1=a2[i];
+        }
+        
+        if(a2[i]<=ymin1)
+        {
+            ymin2=ymin1;
+            ymin1=a2[i];
+        }
+        else if(a2[i]<=ymin2)
+        ymin2=a2[i];
+    }
+    //cout<<a1.size()<<" "<<a2.size()<<" "<<a3.size()<<" ";
+    if(a3.size()>=1)
+    zmin1=*(min_element(a3.begin(),a3.end()));
+    if(a1.size()>=3 && xmax1+xmax2+xmax3>1 && xmax1+xmax2+xmax3<2)
+    return true;
+    if(a1.size()>=2 && a3.size()>=1 && xmin1+xmin2+zmin1<2 && xmin1+xmin2+zmin1>1)
+    return true;
+    if(a1.size()>=1 && a2.size()>=2 && xmin1+ymin1+ymin2<2 && xmin1+ymin1+ymin2>1)
+    return true;
+    if(a1.size()>=1 && a2.size()>=1 && a3.size()>=1 && xmin1+ymin1+zmin1<2 && xmin1+ymin1+zmin1>1)
+    return true;
+    if(a1.size()>=2 && a2.size()>=1 && xmin1+xmin2+ymax1>1 && xmin1+xmin2+ymax1<2)
+    return true;
+    if(a1.size()>=2 && a2.size()>=1 && xmax1+xmax2+ymin1<2 && xmax1+xmax2+ymin1>1)
+    return true;
+    return false;
+}

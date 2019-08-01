@@ -1,0 +1,63 @@
+bool sudoku(vector<vector<char> > &arr)
+{
+    int i,j,k,l,r,c;
+    bool flag=true;
+    for(i=0;i<9;++i)
+    {for(j=0;j<9;++j)
+    {if(arr[i][j]=='.')
+    {flag=false; break;}
+        
+    }
+        if(!flag)
+        break;
+    }
+    if(flag)
+    return true;
+    for(i=0;i<9;++i)
+    {
+        for(j=0;j<9;++j)
+        {
+            if(arr[i][j]=='.')
+            {
+                //run loop for candidate number;
+                for(k=1;k<=9;++k)
+                {
+                    //check row
+                    bool f=true;
+                    for(l=0;l<9;++l)
+                    if(arr[i][l]=='0'+k)
+                    f=false;
+                    //check column
+                    for(l=0;l<9;++l)
+                    if(arr[l][j]=='0'+k)
+                    f=false;
+                    //check box
+                    for(r=i/3*3;r<i/3*3+3;++r)
+                    for(c=j/3*3;c<j/3*3+3;++c)
+                    if(arr[r][c]=='0'+k)
+                    f=false;
+                    if(f)
+                    {
+                        arr[i][j]='0'+k;
+                        if(sudoku(arr)==true)
+                        return true;
+                        arr[i][j]='.';
+                    }
+                    
+                    
+                    
+                }
+                return false;
+            }
+        }
+    }
+    return false;
+    
+}
+void Solution::solveSudoku(vector<vector<char> > &A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    bool x=sudoku(A);
+}

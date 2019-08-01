@@ -1,0 +1,33 @@
+vector<vector<int> > Solution::solve(int a) {
+    vector<vector<int> >arr;
+    int i,j,c;
+    if(a==0)
+    return arr;
+    if(a>=1)
+    {
+        vector<int>brr;
+        brr.push_back(1);
+        arr.push_back(brr);
+        
+    }
+    if(a>=2)
+    {
+        vector<int>brr;
+        brr.push_back(1);
+        brr.push_back(1);
+        arr.push_back(brr);
+        
+    }
+    for(i=3;i<=a;++i)
+    {
+        vector<int>brr;
+        brr.push_back(1);
+        for(j=1;j<arr[i-2].size();++j)
+        {
+            brr.push_back(arr[i-2][j]+arr[i-2][j-1]);
+        }
+        brr.push_back(1);
+        arr.push_back(brr);
+    }
+    return arr;
+}

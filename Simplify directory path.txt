@@ -1,0 +1,39 @@
+string Solution::simplifyPath(string A) {
+    stack<string>st;
+    string str="";
+    int i,j,k,n=A.length();
+    for(i=0;i<n;++i)
+    {
+        str="";
+        if(A[i]=='/')
+        {
+            str+=A[i];
+            j=i+1;
+            while(j<n && A[j]=='/')
+            ++j;
+            if(j<n)
+            {
+                while(j<n && A[j]!='/')
+                {str+=A[j];
+                 ++j;}
+                 if(str=="/.")
+                 {}
+                 else if(str=="/..")
+                { if(!st.empty())
+                    st.pop();}
+                 else
+                 st.push(str);
+            }
+            i=j-1;
+        }
+    }
+    str="";
+    if(st.empty())
+    str="/";
+    while(!st.empty())
+    {
+        str=st.top()+str;
+        st.pop();
+    }
+    return str;
+}

@@ -1,0 +1,7 @@
+int Solution::solve(vector<int> &A) {
+    int c=0,n=A.size(),i;
+    for(i=0;i<n;++i)
+    if(A[i]&1)
+    ++c;
+    return min(c,n-c);
+}

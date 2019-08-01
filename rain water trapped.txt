@@ -1,0 +1,35 @@
+int Solution::trap(const vector<int> &A) {
+    int n=A.size();int mxr[n],mxl[n];
+    int i,j,mx;
+    mxl[0]=-1;
+    mxr[n-1]=-1;
+    mx=A[0];
+    for(i=1;i<n;++i)
+    {
+        if(A[i]<mx)
+        mxl[i]=mx;
+        else
+        {
+            mx=A[i];
+            mxl[i]=-1;
+        }
+    }
+    mx=A[n-1];
+    for(i=n-2;i>=0;--i)
+    {
+        if(A[i]<mx)
+        mxr[i]=mx;
+        else
+        {
+            mx=A[i];
+            mxr[i]=-1;
+        }
+    }
+    int sum=0;
+    for(i=0;i<n;++i)
+    {
+        if(mxl[i]!=-1 && mxr[i]!=-1)
+        sum+=min(mxl[i],mxr[i])-A[i];
+    }
+    return sum;
+}

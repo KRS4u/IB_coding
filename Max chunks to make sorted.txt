@@ -1,0 +1,10 @@
+int Solution::solve(vector<int> &A) {
+    int mx=INT_MIN,c=0,i;
+    for(i=0;i<A.size();++i)
+    {
+        mx=max(mx,A[i]);
+        if(i==mx)
+        c++;
+    }
+    return c;
+}

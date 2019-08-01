@@ -1,0 +1,41 @@
+int Solution::solve(string A) {
+    string str=A+'$';
+    reverse(A.begin(),A.end());
+    str+=A;
+    int i,j,k,n=str.length();
+    int arr[n];
+    arr[0]=0;
+    j=0;
+   // cout<<str<<" ";
+   // k=1;
+    for(i=1;i<n;++i)
+    { if(str[i]==str[j])
+     {
+         arr[i]=j+1;
+         ++j;
+     }
+     else
+     {
+         --j;
+         while(j>=0)
+         {
+             if(str[j]==str[i])
+             {
+                 arr[i]=j+1;
+                 ++j;
+                 break;
+             }
+             --j;
+         }
+        // cout<<j<<","<<i<<" ";
+         if(j==-1)
+         {
+             j=0;
+             arr[i]=0;
+         }
+     }
+       //cout<<arr[i]<<" ";
+    }
+    return A.length()-arr[n-1];
+    
+}

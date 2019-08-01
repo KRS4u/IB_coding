@@ -1,0 +1,4 @@
+int Solution::solve(int A) {
+    int x=log(A)/log(2);
+    return (1<<x);
+}

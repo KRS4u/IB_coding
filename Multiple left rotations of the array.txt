@@ -1,0 +1,16 @@
+vector<vector<int> > Solution::solve(vector<int> &A, vector<int> &B) {
+    vector<vector<int>> arr;
+    int i,j,c,n=A.size();
+    for(i=0;i<B.size();++i)
+    {
+        c=B[i]%n;
+        vector<int>brr;
+        for(j=c;j<n;++j)
+        brr.push_back(A[j]);
+        for(j=0;j<c;++j)
+        brr.push_back(A[j]);
+        arr.push_back(brr);
+        
+    }
+    return arr;
+}

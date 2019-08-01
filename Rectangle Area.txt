@@ -1,0 +1,8 @@
+int Solution::solve(int A, int B, int C, int D, int E, int F, int G, int H) {
+    if(E>=C || G<=A)
+    return 0;
+    if(H<=B || F>=D)
+    return 0;
+    return abs(min(G,C)-max(A,E))*abs(min(H,D)-max(B,F));
+    
+}

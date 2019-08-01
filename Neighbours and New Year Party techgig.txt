@@ -1,0 +1,122 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool check(vector<pair<int,bool>> &parent,vector<int> &arr, int x)
+{
+    int i,j,k,n=arr.size();
+    vector<int>v1,v2;
+    i=x;
+    while(i<n)
+    {
+        if(parent[i].second==true)
+        v1.push_back(arr[i]);
+        i=parent[i].first;
+        if(i==-1)
+        break;
+    }
+    i=x+1;
+    while(i<n)
+    {
+        if(parent[i].second==true)
+        v2.push_back(arr[i]);
+        i=parent[i].first;
+        if(i==-1)
+        break;
+    }
+    sort(v1.begin(),v1.end());
+    sort(v2.begin(),v2.end());
+    int mn=min(v1.size(),v2.size());
+    for(i=0;i<mn;++i)
+    {
+        if(v1[i]>v2[i])
+        return true;
+        else if(v1[i]<v2[i])
+        return false;
+    }
+    return true;
+}
+string maxSum(vector<int> &arr)
+{
+    int i,j,k,n=arr.size();
+    vector<pair<int,bool>>parent(n);
+    vector<long int>dp(n);
+    for(i=n-1;i>=0;--i)
+    {
+        if(i==n-1)
+        {
+            dp[i]=max(arr[i],0);
+            if(arr[i]>0)
+            parent[i]=make_pair(-1,true);
+            else
+            parent[i]=make_pair(-1,false);
+            
+        }
+        else if(i==n-2)
+        {
+            if(arr[i]>dp[i+1])
+            {
+                dp[i]=arr[i];
+                 
+            parent[i]=make_pair(-1,true);
+            }
+            else
+            {
+                dp[i]=dp[i+1];
+                parent[i]=make_pair(i+1,false);
+            }
+        }
+        else
+        {
+            if(arr[i]+dp[i+2]>dp[i+1])
+            {
+                dp[i]=arr[i]+dp[i+2];
+                parent[i]=make_pair(i+2,true);
+            }
+            else if(arr[i]+dp[i+2]<dp[i+1])
+            {
+                dp[i]=dp[i+1];
+                parent[i]=make_pair(i+1,false);
+            }
+            else
+            {
+                dp[i]=dp[i+1];
+                parent[i]=make_pair(i+2,true);
+                bool flag=check(parent,arr,i);
+                if(!flag)
+                parent[i]=make_pair(i+1,false);
+            }
+            
+            
+        }
+    }
+    vector<int>brr;
+    i=0;
+     while(i<n)
+    {
+        if(parent[i].second==true && arr[i]>0)
+        brr.push_back(arr[i]);
+        i=parent[i].first;
+        if(i==-1)
+        break;
+    }
+    string str="";
+    for(i=brr.size()-1;i>=0;--i)
+    str+=to_string(brr[i]);
+    return str;
+    
+}
+int main()
+{
+    int i,j,n,k,t;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        vector<int>arr(n);
+        for(i=0;i<n;++i)
+        cin>>arr[i];
+        cout<<maxSum(arr)<<endl;
+    }
+    
+    return 0;
+}

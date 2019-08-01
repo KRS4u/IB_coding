@@ -1,0 +1,36 @@
+vector<int> Solution::solve(vector<int> &A) {
+    int mx=*(max_element(A.begin(),A.end()));
+    long int n=A.size(),i,j,k,x;
+    vector<int>spf(mx+1,-1);
+    for(i=2;i<=mx;++i)
+    {
+        if(spf[i]==-1)
+        {
+            for(j=2*i;j<=mx;j+=i)
+            {
+                if(spf[j]==-1)
+                spf[j]=i;
+            }
+        }
+    }
+    vector<int>arr(n,1);
+    for(i=0;i<n;++i)
+    {
+        x=A[i];
+        while(x>1)
+        {
+            k=0;
+            if(spf[x]==-1)
+            j=x;
+            else
+            j=spf[x];
+            while(x%j==0)
+            {
+                x/=j;
+                ++k;
+            }
+            arr[i]*=(k+1);
+        }
+    }
+    return arr;
+}

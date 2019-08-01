@@ -1,0 +1,20 @@
+#define mod 1000000007
+int Solution::solve(vector<int> &A) {
+     long int arr[10000];
+     long int i,j,k;
+     arr[0]=1;
+     for(i=1;i<10000;++i)
+     {
+         arr[i]=(arr[i-1]*2)%mod;
+     }
+     sort(A.begin(),A.end());
+     long int sum=0;
+     for(i=0;i<A.size();++i)
+     {
+         for(j=i+1;j<A.size();++j)
+         {
+             sum=(sum+(A[j]-A[i])%mod*arr[j-i-1])%mod;
+         }
+     }
+     return sum;
+}

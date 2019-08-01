@@ -1,0 +1,16 @@
+int Solution::solve(int A) {
+    long long int high=A,low=0,ans=0,mid;
+    while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(A>=(mid*(mid+1))/2 && A<((mid+1)*(mid+2))/2)
+        return mid;
+        else if(A>(mid*(mid+1))/2 && A<=((mid+1)*(mid+2))/2)
+        return mid+1;
+        if(A>(mid*(mid+1))/2)
+        low=mid+1;
+        else high=mid-1;
+    }
+    return ans;
+    
+}

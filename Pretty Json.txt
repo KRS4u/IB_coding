@@ -1,0 +1,56 @@
+vector<string> Solution::prettyJSON(string A) {
+    int c=0,i,j,k,n=A.length();
+    vector<string> arr;
+    string str="",s1="";
+    
+    for(i=0;i<n;++i)
+    {
+        if(A[i]=='{' || A[i]=='[')
+        {
+            if(str!="")
+            arr.push_back(str);
+            s1="";
+            for(j=0;j<c;++j)
+            s1+='\t';
+            s1+=A[i];
+            
+            arr.push_back(s1);
+            s1="";
+            str="";
+            ++c;
+        }
+        else if(A[i]=='}' || A[i]==']')
+        {
+            --c;
+            if(str!="")
+            arr.push_back(str);
+            s1="";
+            for(j=0;j<c;++j)
+            s1+='\t';
+            s1+=A[i];
+            str=s1;
+            if(i+1<n && A[i+1]==',')
+            continue;
+            arr.push_back(s1);
+            s1="";
+            str="";
+            
+        }
+        else if(A[i]==',')
+        {
+            str+=A[i];
+            arr.push_back(str);
+            str="";
+        }
+        else if(str=="")
+        {
+            for(j=0;j<c;++j)
+            str+='\t';
+            str+=A[i];
+        }
+        else
+        str+=A[i];
+        
+    }
+    return arr;
+}

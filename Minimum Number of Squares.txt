@@ -1,0 +1,20 @@
+
+int Solution::countMinSquares(int A) {
+    int i,x,j,arr[A+1];
+    arr[1]=1;
+    arr[0]=1;
+    for(i=2;i<=A;++i)
+    {
+        x=sqrt(i);
+        if(x*x==i)
+        arr[i]=1;
+        else
+        {   arr[i]=i;
+        for(j=2;j*j<i;++j)
+            arr[i]=min(arr[i],arr[i-j*j]+arr[j*j]);
+        }
+        //cout<<arr[i]<<" ";
+        
+    }
+    return arr[A];
+}

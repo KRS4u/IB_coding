@@ -1,0 +1,20 @@
+int Solution::solve(vector<vector<int> > &A, int B) {
+    int n=A.size();
+    int m=A[0].size();
+    int i=0,j=m-1;
+    //cout<<n<<m;
+    while(i<n && j>=0)
+    {
+        if(A[i][j]==B)
+        break;
+        if(A[i][j]<B)
+        ++i;
+        else
+        --j;
+    }
+    //cout<<i<<j;
+    if(i<n && j>=0)
+    return (i+1)*1009+j+1;
+    else
+    return -1;
+}

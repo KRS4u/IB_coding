@@ -1,0 +1,73 @@
+int n;
+vector<vector<int>>arr;
+void ltor(int k, int num, int i, int j);
+void utod(int k, int num, int i, int j);
+void rtol(int k, int num, int i, int j);
+void dtou(int k, int num, int i, int j);
+void ltor(int k, int num, int i, int j)
+{
+    int x;
+    if(k>n)
+    return;
+    for(x=j;x<j+num;++x)
+    {
+        if(k>n)
+        return;
+        arr[i][x]=k++;
+       // cout<<arr[i][x]<<" ";
+    }
+    utod(k,num-1,i+1,x-1);
+}
+void utod(int k, int num, int i, int j)
+{
+    int x;
+    if(k>n)
+    return;
+    for(x=i;x<i+num;++x)
+    {
+        if(k>n)
+        return;
+        arr[x][j]=k++;
+       // cout<<arr[x][j]<<" ";
+    }
+    rtol(k,num,x-1,j-1);
+}
+void rtol(int k, int num, int i, int j)
+{
+    int x;
+    if(k>n)
+    return;
+    for(x=j;x>j-num;--x)
+    {
+        if(k>n)
+        return;
+        arr[i][x]=k++;
+       // cout<<arr[i][x]<<" ";
+    }
+    dtou(k,num-1,i-1,x+1);
+}
+void dtou(int k, int num, int i, int j)
+{
+    int x;
+    if(k>n)
+    return;
+    for(x=i;x>i-num;--x)
+    {
+        if(k>n)
+        return;
+        arr[x][j]=k++;
+       // cout<<arr[x][j]<<" ";
+    }
+    ltor(k,num,x+1,j+1);
+}
+vector<vector<int> > Solution::generateMatrix(int A) {
+    n=A*A;
+    arr.clear();
+    for(int i=0;i<A;++i)
+    {
+        vector<int>brr(A);
+        arr.push_back(brr);
+    }
+    ltor(1,A,0,0);
+    return arr;
+}

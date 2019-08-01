@@ -1,0 +1,44 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::detectCycle(ListNode* A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    ListNode *sp=A,*fp=A,*temp=A;
+    bool flag=false;
+    while(sp && fp)
+    {
+        
+        sp=sp->next;
+        if(fp->next)
+        fp=fp->next->next;
+        else
+        fp=NULL;
+        if(sp==fp && sp)
+        {
+            flag=true;
+            break;
+        }
+    }
+    //cout<<flag;
+    //return sp;
+    if(flag)
+    {
+        while(temp!=sp)
+        {
+            temp=temp->next;
+            sp=sp->next;
+        }
+        return temp;
+    }
+    else
+    return NULL;
+    
+}

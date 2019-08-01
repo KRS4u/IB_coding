@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#define li long long int
+using namespace std;
+set<vector<int>>arr;
+int n;
+int x;
+vector<vector<int> > crr;
+    
+void solve(vector<int> &A,vector<int> brr,int i,int sum)
+{
+    if(sum==x)
+    { sort(brr.begin(),brr.end());
+       if(arr.find(brr)==arr.end())
+        {arr.insert(brr);
+         crr.push_back(brr);
+        }
+    }
+    if(i==n)
+    return;
+    if(A[i]+sum<=x)
+    {
+        brr.push_back(A[i]);
+        solve(A,brr,i+1,sum+A[i]);
+        brr.pop_back();
+    }
+    solve(A,brr,i+1,sum);
+    
+}
+vector<vector<int> > Solution::combinationSum(vector<int> &A, int B) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    arr.clear();
+    n=A.size();
+    x=B;
+    crr.clear();
+    vector<int>brr;
+    solve(A,brr,0,0);
+    
+    return crr;
+}

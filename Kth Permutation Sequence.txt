@@ -1,0 +1,11 @@
+string Solution::getPermutation(int A, int B) {
+    vector<int>arr;
+    for(int i=1;i<=A;++i)
+    arr.push_back(i);
+    for(int i=2;i<=B;++i)
+    next_permutation(arr.begin(),arr.end());
+    string st="";
+    for(int i=0;i<arr.size();++i)
+    st+=to_string(arr[i]);
+    return st;
+}

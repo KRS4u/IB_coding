@@ -1,0 +1,20 @@
+int Solution::sqrt(int A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    long int low=0,high=A,mid;
+    while(low<=high)
+     { mid=(high+low)/2;
+      if(mid*mid==A)
+      return mid;
+      if(A>mid*mid && A<(mid+1)*(mid+1))
+      return mid;
+      if(A<mid*mid && A>(mid-1)*(mid-1))
+      return mid-1;
+      if(A>mid*mid)
+      low=mid+1;
+      else
+      high=mid-1;
+     }
+}

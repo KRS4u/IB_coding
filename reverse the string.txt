@@ -1,0 +1,26 @@
+void Solution::reverseWords(string &A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    string s="",str="";
+    int i,j,k;
+    for(i=0;i<A.length();++i)
+    {
+        while(i<A.length() && A[i]!=' ')
+        {
+            str+=A[i];
+            i++;
+        }
+        s=str+" "+s;
+        str="";
+    }
+    for(i=0;i<s.length();++i)
+    if(s[i]!=' ')
+    break;
+    for(j=s.length()-1;j>=0;--j)
+    if(s[j]!=' ')
+    break;
+    A=s.substr(i,j-i+1);
+    
+}

@@ -1,0 +1,29 @@
+int Solution::solve(vector<vector<int> > &A) {
+    int m=A.size(),n=A[0].size(),i,j,x,k;
+    int arr[m][n];
+    for(i=m-1;i>=0;--i)
+    {
+        x=0;
+        for(j=n-1;j>=0;--j)
+        {
+            x+=A[i][j];
+            arr[i][j]=x;
+        }
+    }
+    for(j=0;j<n;++j)
+    {
+        x=0;
+        for(i=m-1;i>=0;--i)
+        {
+            x+=arr[i][j];
+            arr[i][j]=x;
+        }
+    }
+    k=INT_MIN;
+    for(i=0;i<m;++i)
+    {
+        for(j=0;j<n;++j)
+        k=max(k,arr[i][j]);
+    }
+    return k;
+}

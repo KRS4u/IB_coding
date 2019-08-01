@@ -1,0 +1,12 @@
+int Solution::maxProfit(const vector<int> &A) {
+    if(A.size()==0)
+    return 0;
+    int n=A.size(),arr[n],i,j,mp=A[n-1];
+    arr[n-1]=0;
+    for(i=n-2;i>=0;--i)
+    {
+        arr[i]=mp-A[i];
+        mp=max(mp,A[i]);
+    }
+    return *(max_element(arr,arr+n));
+}

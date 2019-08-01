@@ -1,0 +1,16 @@
+vector<vector<int> > Solution::anagrams(const vector<string> &A) {
+    unordered_map<string,vector<int>> hash;
+    vector<vector<int>> arr;
+    int i,j,k;
+    string str;
+    for(i=0;i<A.size();++i)
+    {
+        str=A[i];
+        sort(str.begin(),str.end());
+        hash[str].push_back(i+1);
+    }
+    for(auto x:hash)
+    arr.push_back(x.second);
+    return arr;
+    
+}

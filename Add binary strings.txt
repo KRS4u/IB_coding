@@ -1,0 +1,42 @@
+string Solution::addBinary(string A, string B) {
+    A='0'+A;
+    B='0'+B;
+    int i,j,k,n1=A.length(),n2=B.length();
+    if(n1<n2)
+    {
+        for(i=0;i<n2-n1;++i)
+        A='0'+A;
+    }
+    else if(n1>n2)
+    {
+        for(i=0;i<n1-n2;++i)
+        B='0'+B;
+    }
+    string str="";
+    int c=0,x;
+    n1=A.length();
+    reverse(A.begin(),A.end());
+    reverse(B.begin(),B.end());
+    for(i=0;i<n1;++i)
+    {
+        x=A[i]-'0'+B[i]-'0';
+        if(x+c>=2)
+        {
+            
+            str+=x+c-2+'0';
+            c=1;
+        }
+        else
+        {
+            str+=x+c+'0';
+            c=0;
+        }
+    }
+    if(c==1)
+    str+='1';
+    reverse(str.begin(),str.end());
+    for(i=0;i<str.length()-1;++i)
+    if(str[i]!='0')
+    break;
+    return str.substr(i);
+}

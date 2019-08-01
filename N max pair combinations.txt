@@ -1,0 +1,41 @@
+class M{
+    public:
+    int val,i,j;
+    M(int val, int i, int j):val(val), i(i), j(j)
+    {}
+    
+};
+bool operator<(const M& m1, const M& m2)
+{
+    return (m1.val < m2.val);
+}
+vector<int> Solution::solve(vector<int> &A, vector<int> &B) {
+    sort(A.begin(),A.end(),greater<int>());
+    sort(B.begin(),B.end(),greater<int>());
+    vector<int>arr;
+    int i=0,j=0,k=0,n=A.size();
+    priority_queue<M> pr;
+    map<pair<int,int>,int> mp;
+    pr.push(M(A[i]+B[j],i,j));
+    mp[make_pair(i,j)]=1;
+    while(k<n)
+    {
+        M x=pr.top();
+        //cout<<x.i<<" "<<x.j<<", ";
+        arr.push_back(x.val);
+        ++k;
+        pr.pop();
+        if(x.i+1<n && mp.find(make_pair(x.i+1,x.j))==mp.end())
+        {
+            pr.push(M(A[x.i+1]+B[x.j],x.i+1,x.j));
+            mp[make_pair(x.i+1,x.j)]=1;
+        }
+        if(x.j+1<n && mp.find(make_pair(x.i,x.j+1))==mp.end())
+        {
+            pr.push(M(A[x.i]+B[x.j+1], x.i, x.j+1));
+            mp[make_pair(x.i,x.j+1)]=1;
+        }
+        
+    }
+    return arr;
+}

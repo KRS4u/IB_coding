@@ -1,0 +1,10 @@
+string Solution::solve(vector<int> &A) {
+    int i,x=0;
+    for(i=0;i<A.size();++i)
+    {
+        x^=A[i];
+    }
+    if(x&1)
+    return "No";
+    else return "Yes";
+}

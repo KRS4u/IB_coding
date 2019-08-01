@@ -1,0 +1,14 @@
+int Solution::solve(vector<int> &A) {
+    int mx=INT_MAX,c=0,i;
+    vector<int>B(A);
+    sort(B.begin(),B.end());
+    int sum1=0,sum2=0;
+    for(i=A.size()-1;i>=0;--i)
+    {
+        sum1+=A[i];
+        sum2+=B[i];
+        if(sum1==sum2)
+        c++;
+    }
+    return c;
+}

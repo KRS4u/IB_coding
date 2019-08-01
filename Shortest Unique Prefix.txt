@@ -1,0 +1,60 @@
+struct Trie {
+      int val;
+      unordered_map<char,Trie *> next;
+      Trie() : val(1) {}
+ };
+void insert(Trie *t, string str)
+{
+    int i=0,n=str.length();
+    Trie *cur=t;
+    while(i<n)
+    {
+        if(cur->next.find(str[i])==cur->next.end())
+        {
+            (cur->next)[str[i]]=new Trie();
+            cur=(cur->next)[str[i]];
+            ++i;
+        }
+        else
+        {
+            ((cur->next)[str[i]])->val+=1;
+            cur=(cur->next)[str[i]];
+            ++i;
+            
+        }
+    }
+}
+string pref(Trie *t, string str)
+{
+    int i=0,n=str.length();
+    string s="";
+    Trie *cur=t;
+    while(i<n)
+    {
+       // cout<< ((cur->next)[str[i]])->val <<" ";
+        
+        if( ((cur->next)[str[i]])->val==1 )
+        {
+            s+=str[i];
+            return s;
+            ++i;
+        }
+        else{
+            s+=str[i];
+            cur= cur=(cur->next)[str[i]];
+            ++i;
+            
+        }
+    }
+    return s;
+}
+vector<string> Solution::prefix(vector<string> &A) {
+    Trie *t=new Trie();
+    int i,n=A.size();
+    vector<string>arr;
+    for(i=0;i<n;++i)
+    insert(t,A[i]);
+    for(i=0;i<n;++i)
+    arr.push_back(pref(t,A[i]));
+    return arr;
+}

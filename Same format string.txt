@@ -1,0 +1,12 @@
+int Solution::solve(const string A, const string B) {
+    string s="";
+    int i,j,k;
+    s+=B[0];
+    for(i=1;i<B.length();++i)
+    if(B[i]!=B[i-1])
+    s+=B[i];
+    if(s==A)
+    return 1;
+    return 0;
+    
+}

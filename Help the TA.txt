@@ -1,0 +1,40 @@
+class Marks{
+    public:
+    int i,err;
+    Marks(int i, int err): i(i), err(err){
+        
+    }
+    
+};
+bool operator<(const Marks& m1, const Marks& m2)
+{
+    if(m1.err<m2.err)
+    return true;
+    if(m1.err==m2.err)
+    {
+        return m1.i>m2.i;
+    }
+    return false;
+}
+vector<int> Solution::solve(vector<int> &A, int B) {
+    priority_queue<Marks> pq;
+    int i,j,k;
+    for(i=0;i<A.size();++i)
+    {
+        if(A[i]>0)
+        pq.push(Marks(i,A[i]));
+    }
+    vector<int> arr;
+    
+    for(i=0;i<B && !pq.empty(); ++i)
+    {
+        Marks x=pq.top();
+        pq.pop();
+        arr.push_back(x.i);
+        if(x.err-1>0)
+        {
+            pq.push(Marks(x.i,x.err-1));
+        }
+    }
+    return arr;
+}

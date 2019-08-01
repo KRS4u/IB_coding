@@ -1,0 +1,13 @@
+int Solution::solve(int A) {
+    
+    int c,b=log(A)/log(2);
+    c= 1<<(b+1);
+    int x=0,i;
+    for(i=0;i<b;++i)
+    {if(!((A>>i)&1))
+     x|=(1<<i);
+        
+    }
+    //cout<<c<<" "<<x<<" ";
+    return c^x;
+}

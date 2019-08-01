@@ -1,0 +1,44 @@
+vector<vector<int> > Solution::fourSum(vector<int> &A, int B) {
+    sort(A.begin(),A.end());
+    int i,j,k,sum;
+    set<vector<int>> arr;
+    unordered_map<int,vector<pair<int,int>>> hash;
+    for(i=0;i<A.size();++i)
+    {
+        for(j=i+1;j<A.size();++j)
+        {
+            sum=A[i]+A[j];
+           
+            if(hash.find(B-sum)!=hash.end())
+            {
+                auto num = hash.find(B - sum); 
+                vector<pair<int, int> > v = num->second; 
+                for(k=0;k<num->second.size();++k)
+                {
+                    pair<int,int> it=v[k];
+                    if (it.first != i && it.first != j &&  
+                        it.second != i && it.second != j) 
+                        {
+                            vector<int>brr(4,0);
+                            brr[0]=A[it.first];
+                            brr[1]=A[it.second];
+                            brr[2]=A[i];
+                            brr[3]=A[j];
+                            sort(brr.begin(),brr.end());
+                            arr.insert(brr);
+                            //cout<<it.first<<" "<<it.second<<" "<<i<<" "<<j<<" ,";
+                        }
+                        
+                }
+            }
+             hash[sum].push_back(make_pair(i, j));
+            
+            
+        }
+    }
+    hash.clear();
+    vector<vector<int>>crr;
+    for(auto itr: arr)
+    crr.push_back(itr);
+    return crr;
+} 

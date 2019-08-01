@@ -1,0 +1,22 @@
+int Solution::solve(vector<int> &A, int B) {
+    priority_queue<int, vector<int>, greater<int>> pq;
+    int i,x;
+    int sum=0;
+    for(i=0;i<A.size();++i)
+    {
+        pq.push(A[i]);
+        sum+=A[i];
+    }
+    for(i=0;i<B;++i)
+    {
+        x=pq.top();
+        if(x==0)
+        break;
+        pq.pop();
+        sum=sum-x+(-1*x);
+        x*=-1;
+        pq.push(x);
+        
+    }
+    return sum;
+}

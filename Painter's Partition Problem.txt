@@ -1,0 +1,35 @@
+int Solution::paint(int A, int B, vector<int> &C) {
+    long long int s=1,e=LLONG_MAX,n=C.size(),i,j,mid=0,ans=0,K=A,T=B;
+    //cout<<e;
+    while(s<=e)
+    {
+        mid=s+(e-s)/2;
+        long int np=1,sum=0;
+        for(i=0;i<n;++i)
+        {
+            if(T*C[i]<=mid-sum)
+            {
+                sum+=T*C[i];
+                //continue;
+            }
+            else
+            {
+                np++;
+                sum=0;
+                i--;
+            }
+            if(np>K)
+            break;
+            
+        }
+        if(np>K)
+        s=mid+1;
+        else
+        {e=mid-1;
+        ans=mid;
+        }
+        //cout<<s<<" "<<e<<" ";
+    }
+    return ans%10000003;
+    
+}

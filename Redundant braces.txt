@@ -1,0 +1,48 @@
+int Solution::braces(string A) {
+    stack<int> arr;
+   // queue<int>brr;
+    int i,j,n=A.length();
+    bool f=1;
+    int a=-1,b=-1;
+    for(i=0;i<n;++i)
+    {
+        if(A[i]=='(')
+        arr.push(i);
+        else if(A[i]==')')
+        {
+            if(a==-1 && b==-1)
+            {
+                if(i-arr.top()==2)
+                {
+                    f=0;
+                    break;
+                }
+                a=arr.top();
+                b=i;
+                arr.pop();
+            }
+            else
+            {
+                if(b==i-1 && a==arr.top()+1)
+                {
+                    f=0;
+                    break;
+                }
+                else if(i-arr.top()==2)
+                {
+                    f=0;
+                    break;
+                }
+                else
+                {
+                    a=arr.top();
+                    arr.pop();
+                    b=i;
+                }
+            }
+            
+        }
+    }
+    return !f;
+   
+}

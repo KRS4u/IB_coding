@@ -1,0 +1,6 @@
+int Solution::singleNumber(const vector<int> &A) {
+    int i,j=0;
+    for(i=0;i<A.size();++i)
+    j=j^A[i];
+    return j;
+}

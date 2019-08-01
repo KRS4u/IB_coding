@@ -1,0 +1,62 @@
+
+int Solution::strStr(const string A, const string B) {
+    if(A=="" || B=="")
+    return -1;
+    if(A.length()<B.length())
+    return -1;
+    int arr[B.length()];
+    arr[0]=0;
+    int i,j,k,n=B.length();
+    i=1;
+    j=0;
+    while(i<n)
+    { 
+        if(B[i]==B[j])
+     {
+         arr[i]=j+1;
+         ++j;
+         ++i;
+     }
+     else
+     {
+        if(j!=0)
+        {
+            j=arr[j-1];
+            
+        }
+        else
+        {
+            arr[i]=0;
+            ++i;
+        }
+     }
+     
+    }
+    
+    j=0;
+    i=0;
+   while(i<A.length())
+    {
+        if(A[i]==B[j])
+        {
+            ++i;
+            ++j;
+        }
+        if(j==n)
+        return i-j;
+        else if(i<A.length() && A[i]!=B[j])
+        {
+            if(j!=0)
+            {
+                j=arr[j-1];
+                
+            }
+            else
+            ++i;
+        }
+        //cout<<j<<" ";
+    }
+    return -1;
+    
+    
+}

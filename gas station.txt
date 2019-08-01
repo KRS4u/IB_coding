@@ -1,0 +1,25 @@
+int Solution::canCompleteCircuit(const vector<int> &A, const vector<int> &B) {
+    int i,j,k,sum=0,n=A.size();
+    for(i=0;i<A.size();++i)
+    {
+        sum=A[i]-B[i];
+        if(i==n-1)
+        j=0;
+        else
+        j=i+1;
+        bool flag=true;
+        while(j!=i && sum>=0)
+        {
+            sum+=A[j]-B[j];
+            ++j;
+            if(j==n)
+            j=0;
+            
+        }
+        if(j==i && sum>=0)
+        return i;
+        if(j>i+1)
+        i=j-1;
+    }
+    return -1;
+}

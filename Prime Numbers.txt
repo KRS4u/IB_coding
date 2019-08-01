@@ -1,0 +1,21 @@
+vector<int> Solution::sieve(int A) {
+    vector<int>arr(A+1,0);
+    vector<int>prime;
+    arr[0]=1;
+    arr[1]=1;
+    //return arr;
+   long int i,j;
+    for(i=2;i<=A;++i)
+    {
+        if(!arr[i])
+        {
+            for(j=i*i;j<=A;j+=i)
+            arr[j]=1;
+        }
+    }
+    //return arr;
+    for(i=2;i<=A;++i)
+    {if(!arr[i])
+    prime.push_back(i);}
+    return prime;
+}

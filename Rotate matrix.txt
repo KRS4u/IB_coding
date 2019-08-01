@@ -1,0 +1,26 @@
+void Solution::rotate(vector<vector<int> > &A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    int n=A.size(),i,j,k,temp,x,y,l;
+    if(n==1)
+    return;
+    for(k=0;k<n/2;++k)
+    {
+        for(i=k;i<n-1-k;++i)
+        {
+           x=k;
+           y=i;
+           temp=A[x][y];
+           for(j=0;j<4;++j)
+           {
+               swap(temp,A[y][n-1-x]);
+               l=x;
+               x=y;
+               y=n-1-l;
+           }
+        }
+    }
+    
+}

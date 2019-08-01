@@ -1,0 +1,20 @@
+vector<int> Solution::solve(int A, vector<vector<int> > &B) {
+    vector<int>arr(A,0);
+    int i,j,k,l,n=B.size();
+    for(i=0;i<n;++i)
+    {
+        j=B[i][0]-1;
+        l=B[i][1];
+        k=B[i][2];
+        arr[j]+=k;
+        if(l<A)
+        arr[l]-=k;
+    }
+    long sum=0;
+    for(i=0;i<A;++i)
+    {
+        sum+=arr[i];
+        arr[i]=sum;
+    }
+    return arr;
+}

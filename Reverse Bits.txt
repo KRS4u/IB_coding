@@ -1,0 +1,21 @@
+unsigned int Solution::reverse(unsigned int A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    vector<int>a;
+    while(A>0)
+    {
+        a.push_back(A%2);
+        A/=2;
+    }
+    int i;
+    
+    unsigned int j=0;
+    for(i=a.size();i<=32;++i)
+    a.push_back(0);
+    
+    for(i=0;i<a.size();++i)
+    j+=a[i]*(1<<31-i);
+    return j;
+}

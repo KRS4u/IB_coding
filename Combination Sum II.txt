@@ -1,0 +1,40 @@
+std::set<std::vector<int>> arr;
+void solve(int index, int target,vector<int> &A, vector<int>&current)
+{
+    if(target==0)
+    {
+        arr.insert(current);
+        return;
+        
+    }
+    if(index==A.size())
+    {
+        return;
+    }
+    if(target>=A[index])
+    {
+        current.push_back(A[index]);
+        solve(index+1,target-A[index],A,current);
+        current.pop_back();
+    }
+    solve(index+1,target,A,current);
+    return;
+}
+vector<vector<int> > Solution::combinationSum(vector<int> &A, int B) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    sort(A.begin(),A.end());
+    arr.clear();
+    vector<int>current;
+    vector<vector<int>>brr;
+    solve(0,B,A,current);
+    std::set< std::vector<int> >::iterator it;
+    for( it = arr.begin(); it != arr.end(); it++) {
+    const std::vector<int>& i = (*it); // HERE we get the vector
+    brr.push_back(i); // NOW we output the first item.
+  }
+    return brr;
+    
+}

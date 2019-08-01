@@ -1,0 +1,25 @@
+int Solution::lengthOfLongestSubstring(string A) {
+    long int i,j,k,cur=1,len=1,n=A.length(),x;
+     //transform(A.begin(), A.end(), A.begin(), ::tolower); 
+    int arr[125]={-1};
+    for(i=0;i<128;++i)
+    arr[i]=-1;
+    arr[A[0]]=0;
+    for(i=1;i<n;++i)
+    {
+        x=arr[A[i]];
+        if(x==-1 || i-cur>x)
+        ++cur;
+        else
+        {
+            if(cur>len)
+            len=cur;
+            cur=i-x;
+        }
+        arr[A[i]]=i;
+    }
+    if(cur>len)
+    len=cur;
+    return len;
+    
+}

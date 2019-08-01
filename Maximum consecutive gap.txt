@@ -1,0 +1,16 @@
+
+// Approach 1 O(nlogn)
+int Solution::maximumGap(const vector<int> &B) {
+    vector<int>A(B);
+    int n=A.size(),i,mx;
+    if(n<2)
+    return 0;
+    sort(A.begin(),A.end());
+    mx=INT_MIN;
+    for(i=1;i<n;++i)
+    mx=max(mx,abs(A[i]-A[i-1]));
+    return mx;
+}
+
+//Approach2
+

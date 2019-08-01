@@ -1,0 +1,34 @@
+class Point{
+    public:
+    int i,j;
+    float dis;
+    Point(int i, int j, float dis):i(i),j(j),dis(dis)
+    {
+        
+    }
+};
+bool operator<(const Point &p1, const Point &p2)
+{
+    return p1.dis>p2.dis;
+}
+vector<vector<int> > Solution::solve(vector<vector<int> > &A, int B) {
+    int i,j;
+    priority_queue<Point> pq;
+    for(i=0;i<A.size();++i)
+    {
+        pq.push(Point(A[i][0],A[i][1],sqrt((long int)A[i][0]*A[i][0]+(long int)A[i][1]*A[i][1])));
+    }
+    vector<vector<int>>arr;
+    for(i=0;i<B;++i)
+    {
+        vector<int>brr;
+        Point x=pq.top();
+        pq.pop();
+        brr.push_back(x.i);
+        brr.push_back(x.j);
+        arr.push_back(brr);
+        
+    }
+    return arr;
+    
+}

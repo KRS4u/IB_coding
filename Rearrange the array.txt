@@ -1,0 +1,17 @@
+vector<int> Solution::solve(vector<int> &B) {
+    //vector<long int>A;
+    long int n=B.size(),i,j,k;
+    vector<long int>A(n);
+    for(i=0;i<n;++i)
+    A[i]=B[i];
+    for(i=0;i<n;++i)
+    {
+        j=A[i]%n;
+        A[j]=A[j]+i*n;
+    }
+    for(i=0;i<n;++i)
+    {
+        B[i]=A[i]/n;
+    }
+    return B;
+}

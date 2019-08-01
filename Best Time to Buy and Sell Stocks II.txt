@@ -1,0 +1,21 @@
+int Solution::maxProfit(const vector<int> &A) {
+    int i,j,n=A.size();
+    if(n==0 || n==1)
+    return 0;
+    int mx=0,mp=0,cur=0,tp=0;
+    for(i=1;i<n;++i)
+    {
+        if(A[i]-A[cur]>mp)
+        {
+            mp=A[i]-A[cur];
+            mx=i;
+        }
+        else
+        {
+            tp+=mp;
+            mp=0;
+            cur=i;
+        }
+    }
+    return tp+mp;
+}

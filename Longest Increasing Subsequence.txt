@@ -1,0 +1,18 @@
+int Solution::lis(const vector<int> &A) {
+    if(A.size()==0)
+    return 0;
+    int n=A.size(),arr[n],i,j,k;
+    arr[0]=1;
+    for(i=1;i<n;++i)
+    {
+        arr[i]=1;
+        for(j=0;j<i;++j)
+        {
+            if(A[i]>A[j])
+            {
+                arr[i]=max(arr[i],arr[j]+1);
+            }
+        }
+    }
+    return *(max_element(arr,arr+n));
+}

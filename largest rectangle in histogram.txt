@@ -1,0 +1,36 @@
+int Solution::largestRectangleArea(vector<int> &A) {
+    int i,j,k,area=INT_MIN,n=A.size();
+    stack<int> st;
+    for(i=0;i<n;++i)
+    {
+        if(st.empty())
+        st.push(i);
+        else if(A[st.top()]<=A[i])
+        st.push(i);
+        else
+        {
+            while(!st.empty() && A[st.top()]>A[i])
+            {
+                k=A[st.top()];
+                st.pop();
+                if(st.empty())
+                j=-1;
+                else
+                j=st.top();
+                area=max(area,(i-1-j)*k);
+            }
+            st.push(i);
+        }
+    }
+    while(!st.empty())
+            {
+                k=A[st.top()];
+                st.pop();
+                if(st.empty())
+                j=-1;
+                else
+                j=st.top();
+                area=max(area,(i-1-j)*k);
+            }
+            return area;
+}

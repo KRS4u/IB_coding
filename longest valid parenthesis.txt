@@ -1,0 +1,24 @@
+int Solution::longestValidParentheses(string A) {
+    int count=0,co=0,cc=0,i,j,k=0;
+    stack<int>st;
+    st.push(-1);
+    for(i=0;i<A.length();++i)
+    {
+        if(A[i]=='(')
+        st.push(i);
+        else
+        {
+            st.pop();
+            if(!st.empty())
+            {
+                k=max(k,i-st.top());
+                
+            }
+            else
+            st.push(i);
+        }
+        
+        
+    }
+    return k;
+}

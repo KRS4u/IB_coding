@@ -1,0 +1,28 @@
+int Solution::minDistance(string A, string B) {
+    int n=A.length(),m=B.length();
+    int i,j;
+    int arr[n+1][m+1];
+    for(i=0;i<=n;++i)
+    {
+        for(j=0;j<=m;++j)
+        {
+            if(i==0)
+            arr[i][j]=j;
+            else if(j==0)
+            arr[i][j]=i;
+            else
+            arr[i][j]=0;
+        }
+    }
+    for(i=1;i<=n;++i)
+    {
+        for(j=1;j<=m;++j)
+        {
+            if(A[i-1]==B[j-1])
+            arr[i][j]=arr[i-1][j-1];
+            else
+            arr[i][j]=1+min(arr[i-1][j-1],min(arr[i-1][j],arr[i][j-1]));
+        }
+    }
+    return arr[n][m];
+}

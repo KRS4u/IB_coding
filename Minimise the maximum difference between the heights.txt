@@ -1,0 +1,23 @@
+int Solution::solve(vector<int> &A, int B) {
+    sort(A.begin(),A.end());
+    int n=A.size();
+    int ans=A[n-1]-A[0];
+    int small=A[0]+B;
+    int big=A[n-1]-B;
+    if(small>big)
+    swap(small,big);
+    int add, sub;
+    for(int i=1;i<n-1;++i)
+    { sub=A[i]-B;
+     add=A[i]+B;
+     if(sub>=small || add<=big)
+     continue;
+     
+     if(big-sub<=add-small)
+     small=sub;
+     else
+     big=add;
+        
+    }
+    return min(ans,big-small);
+}

@@ -1,0 +1,35 @@
+int Solution::solve(string B) {
+    int i,j,n=B.length();
+    if(n==1)
+    return 0;
+    int arr[n];
+    arr[0]=0;
+    i=1;
+    j=0;
+     while(i<n)
+    { 
+        if(B[i]==B[j])
+     {
+         arr[i]=j+1;
+         ++j;
+         ++i;
+     }
+     else
+     {
+        if(j!=0)
+        {
+            j=arr[j-1];
+            
+        }
+        else
+        {
+            arr[i]=0;
+            ++i;
+        }
+     }
+     
+    }
+    if(arr[n-1] && n%(n-arr[n-1])==0)
+    return 1;
+    return 0;
+}

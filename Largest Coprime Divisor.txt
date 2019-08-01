@@ -1,0 +1,7 @@
+int Solution::cpFact(int A, int B) {
+    int x;
+    x=A;
+    while(__gcd(x,B)!=1)
+    x=x/__gcd(x,B);
+    return x;
+}

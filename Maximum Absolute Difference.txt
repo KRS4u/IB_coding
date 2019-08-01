@@ -1,0 +1,15 @@
+int Solution::maxArr(vector<int> &A) {
+    int i,j,k,n=A.size();
+    vector<int>arr,brr;
+    for(i=0;i<n;++i)
+    {
+        arr.push_back(A[i]+i);
+        brr.push_back(A[i]-i);
+    }
+    int mx1,mn1,mx2,mn2;
+    mx1=*(max_element(arr.begin(),arr.end()));
+    mn1=*(min_element(arr.begin(),arr.end()));
+    mx2=*(max_element(brr.begin(),brr.end()));
+    mn2=*(min_element(brr.begin(),brr.end()));
+    return max(mx1-mn1,mx2-mn2);
+}

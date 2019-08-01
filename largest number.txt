@@ -1,0 +1,69 @@
+//bool
+bool compareString(string i1, string i2) 
+{ 
+    /*bool flag=false;
+    int n=min(i1.length(),i2.length()),i,j;
+    for(i=0;i<n;++i)
+    {
+        if(i2[i]<i1[i])
+        return true;
+        if(i2[i]>i1[i])
+        {
+            flag=true;
+            break;
+        }
+    }
+    if(flag)
+    return false;
+    else
+    {
+        flag=false;
+        if(i1.length()==n)
+        {
+            for(i=n;i<i2.length();++i)
+            {
+                if(i1[n-1]>i2[i])
+                return true;
+                if(i1[n-1]<i2[i])
+                return false;
+            }
+            return false;
+        }
+        else
+        {
+            for(i=n;i<i1.length();++i)
+            {
+                if(i2[n-1]>i1[i])
+                return false;
+                if(i2[n-1]<i1[i])
+                return true;
+            }
+            return false;
+        }
+    }*/
+    if((i1+i2)>(i2+i1))
+    return true;
+    return false;
+} 
+/*bool compareInterval(Interval i1, Interval i2) 
+{ 
+    return (i1.start < i2.start); 
+} */
+string Solution::largestNumber(const vector<int> &A) {
+    vector<string>v;
+    int i,j,n=A.size();
+    for(i=0;i<n;++i)
+    v.push_back(to_string(A[i]));
+    sort(v.begin(),v.end(),compareString);
+    string st="",str="";
+    for(i=0;i<n;++i)
+    st+=v[i];
+    for(i=0;i<st.length()-1;++i)
+    {
+        if(st[i]!='0')
+        break;
+    }
+    for(j=i;j<st.length();++j)
+    str+=st[j];
+    return str;
+}

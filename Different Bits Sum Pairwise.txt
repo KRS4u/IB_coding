@@ -1,0 +1,14 @@
+int Solution::cntBits(vector<int> &A) {
+    long long int i,j,n=A.size(),k;
+    long long int c=0;
+    for(i=31;i>=0;--i)
+    {
+        k=0;
+        for(j=0;j<n;++j)
+        if(((A[j] & (1 << i))))
+        k+=1;
+        //cout<<k<<" ";
+        c=(c+((long long int)(k*(n-k))*2))%1000000007;
+    }
+    return c%1000000007;
+	}

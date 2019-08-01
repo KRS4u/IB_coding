@@ -1,0 +1,57 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+ListNode* Solution::partition(ListNode* A, int B) {
+    ListNode *l1,*l2,*t1=NULL,*t2=NULL;
+    l1=new ListNode(-1);
+    l2=new ListNode(-1);
+    while(A)
+    {
+        if(A->val<B)
+        {
+            if(t1==NULL)
+            {
+                l1->val=A->val;
+                t1=l1;
+            }
+            else
+            {
+                t1->next=new ListNode(A->val);
+                t1=t1->next;
+            }
+        }
+        else
+        {
+             if(t2==NULL)
+            {
+                l2->val=A->val;
+                t2=l2;
+            }
+            else
+            {
+                t2->next=new ListNode(A->val);
+                t2=t2->next;
+            }
+            
+        }
+        A=A->next;
+    }
+    if(t1)
+    t1->next=NULL;
+    if(t2)
+    t2->next=NULL;
+    if(l1->val==-1)
+    return l2;
+    else if(l2->val==-1)
+    return l1;
+    else
+    {
+        t1->next=l2;
+        return l1;
+    }
+}

@@ -1,0 +1,25 @@
+string Solution::solve(int A, int B, int C) {
+    string day[]={"saturday","sunday", "monday", "tuesday", "wednesday", "thursday", "friday",};
+    int mn[]={31,28,31,30,31,30,31,31,30,31,30,31};
+    long int d,x;
+    x=(C-1)/4;
+    d=x*366+(C-1-x)*365;
+    for(int i=0;i<B-1;++i)
+    {
+        if(i==1)
+        {
+            if((C%400==0)||(C%4==0 && C%100))
+            d+=29;
+            else
+            d+=28;
+        }
+        else
+        d+=mn[i];
+    }
+    d+=A;
+    //cout<<d;
+    d%=7;
+    
+    return day[d];
+    
+}

@@ -1,0 +1,23 @@
+int Solution::solve(vector<int> &A) {
+    sort(A.begin(),A.end());
+    int i,j,k,n=A.size(),mask=0,max=0,cd;
+    int ele[n];
+    for(i=30;i>=0;--i)
+    {
+        mask|=(1<<i);
+        for(j=0;j<n;++j)
+        ele[j]=A[j]&mask;
+        cd=max|(1<<i);
+        for(k=0;k<n;++k)
+        {
+          if(binary_search(ele+k+1,ele+n,ele[k]^cd))
+            {
+                max=cd;
+                break;
+            }
+           
+        }
+        //cout<<endl;
+    }
+    return max;
+}

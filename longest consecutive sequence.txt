@@ -1,0 +1,21 @@
+int Solution::longestConsecutive(const vector<int> &A) {
+    int count=0,length=INT_MIN,i,j,num;
+    unordered_map<int,int>arr;
+    for(auto x: A)
+    arr[x]=1;
+    for(i=0;i<A.size();++i)
+    {
+        if(arr.find(A[i]-1)==arr.end())
+        {
+            num=A[i];
+            count=0;
+            while(arr.find(num)!=arr.end())
+            {
+                ++num;
+                ++count;
+            }
+            length=max(length,count);
+        }
+    }
+    return length;
+}

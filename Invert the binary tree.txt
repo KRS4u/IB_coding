@@ -1,0 +1,24 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ void inv(TreeNode* A)
+ {
+     if(!A)
+     return;
+     inv(A->left);
+     inv(A->right);
+     TreeNode *temp=A->right;
+     A->right=A->left;
+     A->left=temp;
+     
+ }
+TreeNode* Solution::invertTree(TreeNode* A) {
+    inv(A);
+    return A;
+}

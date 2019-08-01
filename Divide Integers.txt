@@ -1,0 +1,42 @@
+int Solution::divide(int A, int B) {
+    long int count=0;
+    if(B==1)
+    return A;
+    long long int x=abs(abs((long long int) A)),y=abs(abs((long long int)B));
+    int sign = ((A < 0) ^ (B < 0)) ? -1 : 1; 
+    //cout<<x<<" "<<y<<" ";
+    while(x>=y)
+    {
+       // cout<<x<<" ";
+       x-=y;
+       count+=1;
+    }
+    if(count>=INT_MAX)
+    return sign*INT_MAX;
+    else return sign*count;
+}
+//Another Approach O(logn)
+int Solution::divide(int A, int B) {
+    long int count=0;
+   // if(B==1)
+   // return A;
+    long long int x=abs(abs((long long int) A)),y=abs(abs((long long int)B));
+    int sign = ((A < 0) ^ (B < 0)) ? -1 : 1; 
+    //cout<<x<<" "<<y<<" ";
+     long long temp = 0; 
+  
+  // test down from the highest bit and 
+  // accumulate the tentative value for 
+  // valid bit 
+  for (int i = 31; i >= 0; --i) { 
+  
+    if (temp + (y << i) <= x) { 
+      temp += y << i; 
+      count |= 1LL << i; 
+    } 
+  } 
+  
+   if(count>=INT_MAX && sign==1)
+    return sign*INT_MAX;
+    else return sign*count;
+}

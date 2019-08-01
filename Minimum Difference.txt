@@ -1,0 +1,19 @@
+int Solution::solve(int n, int m, vector<vector<int> > &arr) {
+    int i,j,k,p1,p2,dif=INT_MAX;
+    for(i=0;i<n;++i)
+    sort(arr[i].begin(),arr[i].end());
+    for(i=1;i<n;++i)
+    {
+        p1=0;
+        p2=0;
+        while(p1<m && p2<m)
+        {
+            dif=min(dif,abs(arr[i-1][p1]-arr[i][p2]));
+            if(arr[i-1][p1]<arr[i][p2])
+            ++p1;
+            else
+            ++p2;
+        }
+    }
+    return dif;
+}

@@ -1,0 +1,65 @@
+int Solution::search(const vector<int> &A, int B) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    
+    int low=0,n=A.size(),i,j,k,mid,high,pivot=-1,index=-1;
+    high=n-1;
+    while(low<=high)
+    {
+        if(high==low)
+        {
+            pivot=low;
+            break;
+        }
+        mid=(low+high)/2;
+        if(mid<high && A[mid]>A[mid+1])
+        {
+            pivot=mid;
+            break;
+        }
+        if(mid>low && A[mid]<A[mid-1])
+        {
+            pivot=mid-1;
+            break;
+        }
+        if(A[low]>=A[mid])
+        high=mid-1;
+        else
+        low=mid+1;
+    }
+    low=0;
+    high=pivot;
+    while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(A[mid]==B)
+        {
+            index=mid;
+            break;
+        }
+        if(A[mid]>B)
+        high=mid-1;
+        else
+        low=mid+1;
+    }
+    if(index!=-1)
+    return index;
+    low=pivot+1;
+    high=n-1;
+    while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(A[mid]==B)
+        {
+            index=mid;
+            break;
+        }
+        if(A[mid]>B)
+        high=mid-1;
+        else
+        low=mid+1;
+    }
+    return index;
+}

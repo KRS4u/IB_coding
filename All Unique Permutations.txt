@@ -1,0 +1,34 @@
+vector<vector<int> > arr;
+void make_perm(vector<int> &a,int pos)
+{
+    //cout<<"h ";
+    if(pos>=a.size())
+    {
+        arr.push_back(a);
+        return;
+    }
+    for(int i=pos;i<a.size();++i)
+    {
+        if(i!=pos && (a[i]==a[i-1] || a[pos]==a[i]))
+        {
+            
+        }
+        else
+        {swap(a[pos],a[i]);
+        make_perm(a,pos+1);
+        swap(a[pos],a[i]);}
+        //cout<<"x ";
+    }
+    return;
+}
+vector<vector<int> > Solution::permute(vector<int> &A) {
+    arr.clear();
+    if(A.size()==1)
+    {
+        arr.push_back(A);
+        return arr;
+    }
+    sort(A.begin(),A.end());
+    make_perm(A,0);
+    return arr;
+}

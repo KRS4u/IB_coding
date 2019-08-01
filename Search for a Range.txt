@@ -1,0 +1,35 @@
+vector<int> Solution::searchRange(const vector<int> &A, int B) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    vector<int>x;
+    int low,high,mid,y=-1,z=-1;
+    low=0; high=A.size()-1;
+    while(low<=high)
+    {
+        mid=low+(high-low)/2;
+        if(A[mid]==B &&(mid==0 || A[mid-1]!=A[mid]))
+        {
+            y=mid; break;
+        }
+        if(A[mid]<B)
+        low=mid+1;
+        else high=mid-1;
+    }
+    low=0; high=A.size()-1;
+    while(low<=high)
+    {
+        mid=low+(high-low)/2;
+        if(A[mid]==B &&(mid==A.size()-1 || A[mid+1]!=A[mid]))
+        {
+            z=mid; break;
+        }
+        if(A[mid]<=B)
+        low=mid+1;
+        else high=mid-1;
+    }
+    x.push_back(y);
+    x.push_back(z);
+    return x;
+}

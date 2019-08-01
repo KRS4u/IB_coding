@@ -1,0 +1,23 @@
+vector<int> Solution::slidingMaximum(const vector<int> &A, int w) {
+    int i,j,k,mx,n=A.size();
+    if(w==1)
+    return A;
+    if(w>n)
+    w=n;
+    mx=*(max_element(A.begin(),A.begin()+w));
+    vector<int>arr;
+    arr.push_back(mx);
+    for(i=0;i+w<n;++i)
+    {
+        if(A[i+w]>=mx)
+        mx=A[i+w];
+        else
+        {
+            if(A[i]>=mx)
+            mx=*(max_element(A.begin()+i+1,A.begin()+i+w+1));
+        }
+        arr.push_back(mx);
+    }
+    return arr;
+    
+}

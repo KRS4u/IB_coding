@@ -1,0 +1,12 @@
+int Solution::solve(vector<vector<int> > &A) {
+    int n=A.size(),m=A[0].size(),i,j;
+    long int k=0;
+    for(i=0;i<n;++i)
+    {
+        for(j=0;j<m;++j)
+        {
+            k+=(i+1)*(j+1)*(n-i)*(m-j)*A[i][j];
+        }
+    }
+    return k;
+}

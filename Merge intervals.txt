@@ -1,0 +1,39 @@
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+  bool compareInterval(Interval i1, Interval i2) 
+{ 
+    return (i1.start < i2.start); 
+} 
+vector<Interval> Solution::insert(vector<Interval> &A, Interval newInterval) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    A.push_back(newInterval);
+     sort(A.begin(),A.end(),compareInterval);
+    vector<Interval>arr;
+    int i,j,st,en;
+    for(i=0;i<A.size();++i)
+    {
+        st=A[i].start;
+        en=A[i].end;
+        for(j=i+1;j<A.size();++j)
+        {
+            if(A[j].start<=en)
+            {
+                en=max(en,A[j].end);
+            }
+            else break;
+        }
+        arr.push_back(Interval(st,en));
+        i=j-1;
+    }
+    return arr;
+}
