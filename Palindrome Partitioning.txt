@@ -1,0 +1,42 @@
+bool isPalindrome(string str, int start, int i)
+{
+    while(start<i)
+    {
+        if(str[start]!=str[i])
+        return false;
+        ++start;
+        --i;
+        
+    }
+    return true;
+}
+void partitionUtil(vector<vector<string> >&allPart, vector<string> &currentPart, int start, int n, string str)
+{
+    if(start>=n)
+    {
+        allPart.push_back(currentPart);
+        return;
+    }
+    for(int i=start;i<n;++i)
+    {
+        if(isPalindrome(str, start,i))
+        {
+            currentPart.push_back(str.substr(start,i-start+1));
+            partitionUtil(allPart, currentPart, i+1,n,str);
+            currentPart.pop_back();
+            
+        }
+    }
+}
+ 
+vector<vector<string> > Solution::partition(string A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    vector<vector<string>> allPart;
+    vector<string> currentPart;
+    int n=A.length();
+    partitionUtil(allPart, currentPart, 0, n, A);
+    return allPart;
+}
