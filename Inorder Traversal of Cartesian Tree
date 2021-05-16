@@ -1,0 +1,22 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+TreeNode* utilBuild(vector<int> &A, int start, int end){
+    if(start>=end)
+    return NULL;
+    int maxElement = int(max_element(A.begin()+start, A.begin()+end) - A.begin());
+    TreeNode* t= new TreeNode(A[maxElement]);
+    t->right = utilBuild(A,maxElement+1, end);
+    t->left = utilBuild(A,start,maxElement);
+    return t;
+}
+TreeNode* Solution::buildTree(vector<int> &A) {
+    return utilBuild(A,0,A.size());
+}
+

@@ -1,0 +1,23 @@
+bool isBST(int mn, int mx, vector<int>&A, int i)
+{
+    if(i>=A.size())
+    return true;
+    if(A[i]<mn || A[i]>mx)
+    return 0;
+    if(i+1<A.size())
+    {
+        if(A[i]>A[i+1])
+        return isBST(mn,A[i]-1,A,i+1);
+        else
+        return isBST(A[i]+1,mx,A,i+1);
+    }
+    return true;
+}
+string Solution::solve(vector<int> &A) {
+    int mx=INT_MAX,mn=INT_MIN;
+    
+if(isBST(mn,mx,A,0))
+return "YES";
+return "NO";
+}
+
