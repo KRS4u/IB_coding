@@ -1,0 +1,24 @@
+#Bookmarked
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int temp=nums[0],temp2, n=nums.size(), i=0, j;
+        k=k%n;
+        if(k==0 || n==1){
+            return;
+        }
+        int hcf = __gcd(n,k);
+        for(j=0; j<hcf;++j) {
+            i=j;
+            temp=nums[j];
+            do {
+                i=(i+k)%n;
+                temp2=nums[i];
+                nums[i]=temp;
+                temp=temp2;
+
+            }while(i!=j);
+        }
+    }
+};

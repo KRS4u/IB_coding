@@ -1,0 +1,86 @@
+
+int n;
+vector<vector<int>>arr;
+vector<int>sol;
+void ltor( int y, int z, int i, int j);
+void utod( int y, int z, int i, int j);
+void rtol( int y, int z, int i, int j);
+void dtou( int y, int z, int i, int j);
+void ltor( int y, int z, int i, int j)
+{
+    int x;
+    if(sol.size()>=n){
+        return;
+    }
+    
+    for(x=j;x<j+z;++x)
+    {
+        if(sol.size()>=n){
+        return;
+    }
+       cout<<arr[i][x]<<" ";
+        sol.push_back(arr[i][x]);
+    }
+    utod(y-1,z,i+1,x-1);
+}
+void utod(int y, int z, int i, int j)
+{
+    int x;
+    if(sol.size()>=n){
+        return;
+    }
+    for(x=i;x<i+y;++x)
+    {
+        if(sol.size()>=n){
+        return;
+    }
+        cout<<arr[x][j]<<" ";
+        sol.push_back(arr[x][j]);
+    }
+    rtol(y,z-1,x-1,j-1);
+}
+void rtol(int y, int z, int i, int j)
+{
+    int x;
+    if(sol.size()>=n){
+        return;
+    }
+    for(x=j;x>j-z;--x)
+    {
+       if(sol.size()>=n){
+        return;
+    }
+      cout<<arr[i][x]<<" ";
+        sol.push_back(arr[i][x]);
+    }
+    dtou(y-1,z,i-1,x+1);
+}
+void dtou(int y, int z, int i, int j)
+{
+    int x;
+    if(sol.size()>=n){
+        return;
+    }
+    for(x=i;x>i-y;--x)
+    {
+        if(sol.size()>=n){
+        return;
+    }
+        cout<<arr[x][j]<<" ";
+        sol.push_back(arr[x][j]);
+    }
+    ltor(y,z-1,x+1,j+1);
+}
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        arr.clear();
+        sol.clear();
+        arr=matrix;
+        int y=matrix.size(), z=matrix[0].size();
+        n=y*z;
+        ltor(y,z,0, 0);
+        return sol;
+    }
+};

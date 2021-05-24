@@ -1,0 +1,21 @@
+from math import gcd
+class Solution:
+    def nthMagicalNumber(self, n: int, a: int, b: int) -> int:
+        hcf=gcd(a,b)
+        lcm=(a*b)//hcf
+        arr1=[]
+        for i in range(a,lcm+1,a):
+            arr1.append(i)
+        for i in range(b,lcm+1,b):
+            if i%a!=0:
+                arr1.append(i)
+        arr1.sort()
+        size=len(arr1)
+        quotient=n//size
+        remainder=n%size
+        mod=10**9+7
+        ans=(quotient*lcm)%(mod)
+        if remainder>0:
+            ans+=arr1[remainder-1]
+                    
+        return (ans%mod)

@@ -1,3 +1,5 @@
+#Bookmarked
+
 int Solution::numOptions(vector<int> &A, int B, int C) {
     int n=A.size();
     int i,j,sum=0,ways=0;
