@@ -1,0 +1,27 @@
+#Bookmarked
+
+class Solution:
+    # @param A : tuple of integers
+    # @return an integer
+    def maximumGap(self, A):
+        LMin=[]
+        RMax=[]
+        mn=A[0]
+        mx=A[-1]
+        n=len(A)
+        for i in range(n):
+            mn=min(mn, A[i])
+            mx=max(mx, A[n-i-1])
+            LMin.append(mn)
+            RMax.append(mx)
+        RMax.reverse()
+        i=0
+        j=0
+        res=-1
+        while i<n and j<n:
+            if LMin[i]<=RMax[j]:
+                res=max(res, j-i)
+                j=j+1
+            else:
+                i=i+1
+        return res
